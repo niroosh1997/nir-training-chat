@@ -1,6 +1,8 @@
 import socket
 import threading
 
+from nir_training.client_logic import ClientLogic
+
 
 class Server:
     def run(self):
@@ -20,12 +22,12 @@ class Server:
             print("Get out!")
 
     def _handle_client(self, connection: socket.socket, address: tuple[str, int]):
-        # client_logic = ClientLogic(connection)
+        client_logic = ClientLogic(connection)
         while True:
             data = connection.recv(1024)
             if not data:
                 break
-            connection.sendall(data)
+            client_logic.handle_message(data)
 
 
 if __name__ == "__main__":
