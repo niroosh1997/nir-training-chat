@@ -1,7 +1,7 @@
 import socket
 
 
-class ClientLogic:
+class ClientHandler:
     def __init__(self, connection: socket.socket):
         self._connection = connection
 
